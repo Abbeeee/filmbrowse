@@ -15,7 +15,6 @@
 	 include 'header.php'; ?>
 
 
-
 		<div id="mybooks-container">
 
 			<div id="mybooks-top-container">

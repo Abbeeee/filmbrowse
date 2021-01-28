@@ -32,12 +32,12 @@
 		<div class="info-container">
 			<div class="info-box">
 				<img class="info-img" src="images/building.jpg" alt="Building and sky view">
-				<h2>Headline</h2>
+				<h2>About</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
 			</div>
 			<div class="info-box">
 				<img class="info-img" src="images/wine.jpg" alt="Book and a wine glass">
-				<h2>Headline</h2>
+				<h2>Browse</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
 			</div>
 		</div>
