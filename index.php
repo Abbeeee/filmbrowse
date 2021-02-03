@@ -14,8 +14,6 @@
   <?php
     include 'header.php'; ?>
 
-
-
 		<main>
 			<section>
 				<h1>Welcome to the bookclub, online</h1>

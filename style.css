@@ -1,5 +1,5 @@
 /* RESETS & PAGE CONTAINER */
-body,h1,h2,h3,h4,h5,p,ul,a {
+body,h1,h2,h3,h4,h5,p,ul,a,figure {
 	margin: 0;
 	padding: 0;
 }
@@ -64,10 +64,8 @@ nav a:hover {
 }
 #logo {
   float: left;
-	font-family: termina, sans-serif;
-  font-weight: 700;
-	font-size: 2em;
-	line-height: 2.5em;
+	max-width: 300px;
+	margin: 25px 0 0 10px;
 }
 
 
@@ -146,7 +144,7 @@ main h1 {
 #about-container {
 	max-width: 960px;
 	margin: auto;
-	padding: 50px 0 50px 0;
+	padding: 50px 0 100px 0;
 }
 #about-container h1 {
 	font-family: termina, sans-serif;
