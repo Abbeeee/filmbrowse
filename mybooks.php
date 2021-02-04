@@ -12,7 +12,7 @@
 <div class="wrapper">
 
 <?php
-	 include 'header.php'; ?>
+	 include 'include/header.php'; ?>
 
 
 		<div id="mybooks-container">
@@ -56,7 +56,7 @@
 </div>
 
 <?php
-	 include 'footer.php'; ?>
+	 include 'include/footer.php'; ?>
 
 </body>
 

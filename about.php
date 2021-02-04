@@ -10,7 +10,7 @@
 <body>
 
 <?php
-  include 'header.php'; ?>
+  include 'include/header.php'; ?>
 
 <div class="wrapper">
 
@@ -53,7 +53,7 @@
 </div>
 
 <?php
-  include 'footer.php'; ?>
+  include 'include/footer.php'; ?>
 
 </body>
 

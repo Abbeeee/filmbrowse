@@ -12,7 +12,7 @@
 <div class="wrapper">
 
   <?php
-    include 'header.php'; ?>
+    include 'include/header.php'; ?>
 
 		<main>
 			<section>
@@ -44,7 +44,7 @@
 	</div>
 
   <?php
-    include 'footer.php'; ?>
+    include 'include/footer.php'; ?>
 
 </body>
 
