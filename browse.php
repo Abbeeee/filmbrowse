@@ -34,24 +34,19 @@
 
 				<tr>
 					<th>Title</th>
+					<th>Author</th>
 					<th class="button-cell">Reserve</th>
 				</tr>
+
 				<?php
-					while($row = $result1->fetch()){
-					    echo "<tr>";
-					    echo "<td> $title </td>";
-							echo "<td class='button-cell'><button>Reserve</button></td>";
-					    echo "</tr>";
-					}
-					// ALTERNATIVE B - more code here but less in search.php - also changes needed in search.php
-					// while($row = $result->fetch_assoc()){
-					//    echo "<tr>";
-					//    echo "<td>";
-					//		echo $row['title'];
-					//		echo "</td>";
-					//		echo "<td class='button-cell'><button>Reserve</button></td>";
-					//    echo "</tr>";
-					// }
+					// As long as $result contains any rows, display them
+					while($row = $result->fetch_assoc()){
+					   echo "<tr>";
+						 echo "<td>".$row['title']."</td>";
+						 echo "<td>".$row['name']."</td>";
+						 echo "<td class='button-cell'><button>Reserve</button></td>";
+						 echo "</tr>";
+					};
 				?>
 				</table>
 			</div>

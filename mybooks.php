@@ -21,6 +21,8 @@
 				<h1>My Books</h1>
 			</div>
 
+
+<!-- OLD STATIC TABLE
 			<table class="mybooks-table">
 				<tr>
 					<th>Title</th>
@@ -47,6 +49,40 @@
 					<td>J.R.R Tolkien</td>
 					<td class="button-cell"><button>Return</button></td>
 			</table>
+-->
+				<?php
+
+					// Display all books with matching authors on arrive on page
+					$query = "SELECT b.*, a.*
+					          FROM book b
+					          JOIN bookAuthor o
+					          ON b.bookID = o.bookID
+					          JOIN author a
+					          ON a.authorID = o.authorID
+										WHERE status = 'unavailable'";
+
+					// Prepare query as above, and save as variable $stmt
+					$stmt = $db->prepare($query);
+					// Execute query
+					$stmt->execute();
+					// Get the result of query
+					$result = $stmt->get_result();
+
+					// Print out table
+					echo '<table class="browse-table" style="margin:50px auto;">';
+					echo '<tr> <b> <th>Title</th> <th>Author</th> <th>Return</th> </b> </tr>';
+
+					// As long as $result contains any rows, display them in <tr>'s
+					while($row = $result->fetch_assoc()){
+					   echo "<tr>";
+						 echo "<td>".$row['title']."</td>";
+						 echo "<td>".$row['name']."</td>";
+						 echo "<td class='button-cell'><button>Return</button></td>";
+						 echo "</tr>";
+					};
+					echo "</table>";
+
+				?>
 
 		</div>
 
