@@ -77,10 +77,21 @@
 					   echo "<tr>";
 						 echo "<td>".$row['title']."</td>";
 						 echo "<td>".$row['name']."</td>";
-						 echo "<td class='button-cell'><button>Return</button></td>";
+						 echo "<td class='button-cell'>";
+						 echo "<form method='POST'>";
+						 echo "<input style='display:none;' name='id' value='".$row['bookID']."'>";
+						 echo "<input type='submit' name='status' value='Return'></form>";
+						 echo "</td>";
 						 echo "</tr>";
+						 if(isset($_POST['status']) || isset($_POST['id'])){
+	 						$id = $_POST['id'];
+	 						$reserved = mysqli_query($db," UPDATE book SET status ='available' WHERE bookID = $id ");
+	 					}
 					};
+
 					echo "</table>";
+
+
 
 				?>
 

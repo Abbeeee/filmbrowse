@@ -44,8 +44,17 @@
 					   echo "<tr>";
 						 echo "<td>".$row['title']."</td>";
 						 echo "<td>".$row['name']."</td>";
-						 echo "<td class='button-cell'><button>Reserve</button></td>";
+						 echo "<td class='button-cell'>";
+						 echo "<form method='POST'>";
+						 echo "<input style='display:none;' name='id' value='".$row['bookID']."'>";
+						 echo "<input type='submit' name='status' value='Return'></form>";
+						 echo "</td>";
 						 echo "</tr>";
+
+						 if(isset($_POST['status']) || isset($_POST['id'])){
+	 						$id = $_POST['id'];
+	 						$reserved = mysqli_query($db," UPDATE book SET status ='unavailable' WHERE bookID = $id ");
+	 						}
 					};
 				?>
 				</table>
@@ -100,14 +109,14 @@
 			<?php
 				$query = "SELECT * from book";
 				$stmt = $db->prepare($query);
-				$stmt->bind_result($bookID, $title, $ISBN, $pages, $edition, $year, $publisher);
+				$stmt->bind_result($bookID, $title, $ISBN, $pages, $edition, $year, $publisher, $status);
 				$stmt->execute();
 
 				echo '<table class="browse-table" style="margin:50px auto;">';
-				echo '<tr> <b> <th>Title</th> <th>ISBN</th> <th>Pages</th> <th>Edition</th> <th>Year</th> <th>Publisher</th> <th>Reserve</th> </b> </tr>';
+				echo '<tr> <b> <th>BookID</th> <th>Title</th> <th>ISBN</th> <th>Pages</th> <th>Edition</th> <th>Year</th> <th>Publisher</th> <th>Status</th> </b> </tr>';
 				while ($stmt->fetch()) {
 					echo "<tr>";
-					echo "<td> $title </td><td> $ISBN </td><td> $pages </td><td> $edition </td><td> $year </td><td> $publisher </td><td class='button-cell'><button>Reserve</button></td>";
+					echo "<td> $bookID </td> <td> $title </td><td> $ISBN </td><td> $pages </td><td> $edition </td><td> $year </td><td> $publisher </td><td> $status </td>";
 					echo "</tr>";
 				}
 				echo "</table>";
