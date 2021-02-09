@@ -228,7 +228,7 @@ input[type=text]:focus, input[type=text]:hover, textarea:focus, textarea:hover {
 	border-bottom: 5px solid #3f5ea8;
 	transition: all 0.2s;
 }
-input[type=submit] {
+#browse-form input[type=submit], .contact-form input[type=submit] {
 	padding: 10px 20px;
 	border: none;
 	background-color: #FFD228;
@@ -239,10 +239,31 @@ input[type=submit] {
   background-position: top;
   transition: all .2s ease-out;
 }
-input[type=submit]:hover {
+#browse-form input[type=submit]:hover, .contact-form input[type=submit]:hover {
 	color: white;
 	background-position: bottom;
 }
+.update-btn {
+	padding: 10px 20px;
+	border: none;
+	background-color: #FFD228;
+	cursor: pointer;
+	outline: none;
+}
+.update-btn:hover {
+	color: white;
+	background-color: #3f5ea8;
+	transition: all .2s ease-out;
+}
+.changed {
+	padding: 10px 20px;
+	border: none;
+	background-color: #FFD228;
+	cursor: pointer;
+	outline: none;
+	background-color: lightgreen;
+}
+
 
 /* TABLE */
 .browse-table {
@@ -254,14 +275,19 @@ input[type=submit]:hover {
   background-color: #F5EFD8;
   color: black;
 }
-.browse-table td {
+.browse-table tbody td {
 	font-size: 14px;
-	padding: 10px 25px;;
+	padding: 10px 25px;
 }
+.browse-table tbody tr {
+
+}
+
 .button-cell {
 	width: 10%;
 	text-align: center;
 }
+/* OLD BUTTON STYLING
 .browse-table td button {
 	padding: 10px;
 	border: none;
@@ -275,7 +301,8 @@ input[type=submit]:hover {
 	background-color: #3f5ea8;
 	transition: all .2s ease-out;
 }
-.browse-table tr:nth-child(odd){background-color: #f2f2f2;}
+*/
+.browse-table tr:nth-child(even){background-color: #f2f2f2;}
 .browse-table tr:hover {background-color: #ddd;}
 
 
@@ -308,10 +335,14 @@ input[type=submit]:hover {
 	font-size: 14px;
 	padding: 10px 25px;;
 }
+.mybooks-table tr {
+
+}
 .button-cell {
 	width: 10%;
 	text-align: center;
 }
+/* OLD BUTTON STYLING
 .mybooks-table td button {
 	padding: 10px;
 	border: none;
@@ -325,6 +356,7 @@ input[type=submit]:hover {
 	background-color: #3f5ea8;
 	transition: all .2s ease-out;
 }
+*/
 .mybooks-table tr:nth-child(odd){background-color: #f2f2f2;}
 .mybooks-table tr:hover {background-color: #ddd;}
 

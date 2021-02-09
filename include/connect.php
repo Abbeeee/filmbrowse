@@ -1,6 +1,6 @@
 <?php
 
-// Add stuff
+// Set connection query
 $db = new mysqli($host, $user, $password, $database);
 
 // Check connection

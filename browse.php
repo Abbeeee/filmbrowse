@@ -5,6 +5,7 @@
 	<title>Le Bookstore</title>
 	<link rel="stylesheet" href="https://use.typekit.net/dix1wpk.css">
 	<link href="style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -14,10 +15,9 @@
 <?php
   include 'include/header.php'; ?>
 
-
-
   <div id="browse-container">
 
+<!-- THE SEARCH FORM -->
 		<div id="form-container">
 			<h1>Browse Books</h1>
 			<form id="browse-form" action="" method="GET">
@@ -28,69 +28,63 @@
 		</div>
 
 
-<!-- THE SEARCH FORM -->
+<!-- THE BROWSE TABLE -->
 		<div class="table-container">
 			<table class="browse-table">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Author</th>
+						<th class="button-cell">Reserve</th>
+					</tr>
+				</thead>
 
-				<tr>
-					<th>Title</th>
-					<th>Author</th>
-					<th class="button-cell">Reserve</th>
-				</tr>
-
+				<tbody>
 				<?php
+					// Print boodID outside while loop, see below
+					$id = '';
 					// As long as $result contains any rows, display them
-					while($row = $result->fetch_assoc()){
+					while ($row = $result->fetch_assoc()){
 					   echo "<tr>";
 						 echo "<td>".$row['title']."</td>";
 						 echo "<td>".$row['name']."</td>";
 						 echo "<td class='button-cell'>";
 						 echo "<form method='POST'>";
-						 echo "<input style='display:none;' name='id' value='".$row['bookID']."'>";
-						 echo "<input type='submit' name='status' value='Return'></form>";
+						 echo "<button id='".$row['bookID']."' class='update-btn' name='status' value='".$row['bookID']."'>Reserve</button></form>";
 						 echo "</td>";
 						 echo "</tr>";
-
-						 if(isset($_POST['status']) || isset($_POST['id'])){
-	 						$id = $_POST['id'];
-	 						$reserved = mysqli_query($db," UPDATE book SET status ='unavailable' WHERE bookID = $id ");
-	 						}
 					};
+					// If the Return button has been pressed, SET status to unavailable where bookID matches
+					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
+					if (isset($_POST['status'])){
+					 $id = $_POST['status'];
+					 echo "<script type='text/javascript'>document.getElementById('".$id."').className = 'changed';</script>";
+					 $sql = "UPDATE book SET status = 'unavailable' WHERE bookID = $id";
+					 $stmt = $db->prepare($sql);
+					 $stmt->execute();
+					 // Force refresh of page
+					 // echo "<script type='text/javascript'>location.href = 'browse.php';</script>";
+				 	};
+					// free results
+					$stmt->free_result();
+   				// close statement
+   				$stmt->close();
+					// close connection
+					$db->close();
 				?>
-				</table>
-			</div>
-
-
-<!-- THE OLD STATIC FORM
-		<div class="table-container">
-			<table class="browse-table">
-				<tr>
-					<th>Title</th>
-					<th>Author</th>
-					<th class="button-cell">Reserve</th>
-				</tr>
-				<tr>
-					<td>The Fellowship of the Ring</td>
-					<td>J.R.R Tolkien</td>
-					<td class="button-cell"><button>Reserve</button></td>
-				</tr>
-				<tr>
-					<td>The Two Towers</td>
-					<td>J.R.R Tolkien</td>
-					<td class="button-cell"><button>Reserve</button></td>
-				</tr>
-				<tr>
-					<td>The Return of the King</td>
-					<td>J.R.R Tolkien</td>
-					<td class="button-cell"><button>Reserve</button></td>
-				</tr>
-				<tr>
-					<td>The Hobbit</td>
-					<td>J.R.R Tolkien</td>
-					<td class="button-cell"><button>Reserve</button></td>
+				</tbody>
 			</table>
 		</div>
- -->
+
+
+
+
+
+
+
+
+
+
 
 		<div style ="border: dashed 5px linen; padding: 25px; margin: 100px 0;">
 			<h3 style="margin-bottom:10px; color: salmon;">TEMPORARY</h3>
@@ -122,6 +116,8 @@
 				echo "</table>";
 
 				$stmt->close();
+				// close connection
+				$db->close();
 			?>
 
 	</div>
@@ -135,7 +131,6 @@
 
 <?php
   include 'include/footer.php'; ?>
-
 </body>
 
 </html>

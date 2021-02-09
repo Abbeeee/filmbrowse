@@ -5,12 +5,12 @@
 // $query1 = "SELECT * FROM book . SELECT * FROM author";
 
 // Display all books with matching authors on arrive on page
-$query1 = "SELECT b.*, a.*
-          FROM book b
-          JOIN bookAuthor o
-          ON b.bookID = o.bookID
-          JOIN author a
-          ON a.authorID = o.authorID
+$query1 = "SELECT book.*, author.*
+          FROM book
+          JOIN bookAuthor
+          ON book.bookID = bookAuthor.bookID
+          JOIN author
+          ON author.authorID = bookAuthor.authorID
           WHERE status = 'available'";
 
 
@@ -18,12 +18,12 @@ $query1 = "SELECT b.*, a.*
   if (isset($_GET['title']) || isset($_GET['name'])) {
         $title = $_GET['title'];
         $name = $_GET['name'];
-        $query1 = "SELECT b.*, a.*
-                  FROM book b
-                  JOIN bookAuthor o
-                  ON b.bookID = o.bookID
-                  JOIN author a
-                  ON a.authorID = o.authorID
+        $query1 = "SELECT book.*, author.*
+                  FROM book
+                  JOIN bookAuthor
+                  ON book.bookID = bookAuthor.bookID
+                  JOIN author
+                  ON author.authorID = bookAuthor.authorID
                   WHERE title LIKE '%$title%' && name LIKE '%$name%' && status = 'available'";
   }
 
@@ -39,8 +39,8 @@ $result = $stmt->get_result();
 
 // Test too see items in the array
 // while($row = $result->fetch_assoc()){
-//    echo $row['authorID']."<br>";
-// };
+//     echo $row['title']."<br>";
+//  };
 
 
 
