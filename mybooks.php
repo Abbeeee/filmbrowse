@@ -20,6 +20,16 @@
 				<h1>My Books</h1>
 			</div>
 
+				<table class="mybooks-table">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Author</th>
+							<th class="button-cell">Return</th>
+						</tr>
+					</thead>
+
+					<tbody>
 				<?php
 					// Display all books with matching authors on arrive on page
 					$query = "SELECT book.*, author.*
@@ -37,21 +47,17 @@
 					// Get the result of query
 					$result = $stmt->get_result();
 
-					// Print out table
-					echo '<table class="mybooks-table" style="margin:50px auto;">';
-					echo '<tr><b><th>Title</th><th>Author</th><th>Return</th></b></tr>';
-
 					// Print boodID outside while loop, see below
 					$id = '';
 					// As long as $result contains any rows, display them in <tr>'s
 					while ($row = $result->fetch_assoc()){
-					   echo "<tr>";
-						 echo "<td>".$row['title']."</td>";
-						 echo "<td>".$row['name']."</td>";
-						 echo "<td class='button-cell'>";
+					   echo "<tr id='".$row['bookID']."'>";
+						 echo "<td><div>".$row['title']."</div></td>";
+						 echo "<td><div>".$row['name']."</div></td>";
+						 echo "<td class='button-cell'><div>";
 						 echo "<form method='POST'>";
 						 echo "<button class='update-btn' type='submit' name='status' value='".$row['bookID']."'>Return</button></form>";
-						 echo "</td>";
+						 echo "</div></td>";
 						 echo "</tr>";
 					};
 
@@ -59,6 +65,7 @@
 					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
 					if (isset($_POST['status'])){
 					$id = $_POST['status'];
+					echo "<script>document.getElementById('".$id."').className = 'hide-row';</script>";
 					$stmt = $db->prepare("UPDATE book SET status = 'available' WHERE bookID = $id");
 					$stmt->execute();
 					// Force refresh of page
@@ -78,6 +85,7 @@
 					$db->close();
 				?>
 
+			</tbody>
 		</div>
 
 	<div class="push"></div>

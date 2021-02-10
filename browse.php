@@ -45,25 +45,32 @@
 					$id = '';
 					// As long as $result contains any rows, display them
 					while ($row = $result->fetch_assoc()){
-					   echo "<tr>";
-						 echo "<td>".$row['title']."</td>";
-						 echo "<td>".$row['name']."</td>";
-						 echo "<td class='button-cell'>";
+					   echo "<tr id='".$row['bookID']."'>";
+						 echo "<td><div>".$row['title']."</div></td>";
+						 echo "<td><div>".$row['name']."</div></td>";
+						 echo "<td class='button-cell'><div>";
 						 echo "<form method='POST'>";
 						 echo "<button id='".$row['bookID']."' class='update-btn' name='status' value='".$row['bookID']."'>Reserve</button></form>";
-						 echo "</td>";
+						 echo "</div></td>";
 						 echo "</tr>";
 					};
 					// If the Return button has been pressed, SET status to unavailable where bookID matches
 					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
 					if (isset($_POST['status'])){
 					 $id = $_POST['status'];
-					 echo "<script type='text/javascript'>document.getElementById('".$id."').className = 'changed';</script>";
+					 // echo "<script type='text/javascript'>document.getElementById('".$id."').className = 'changed';</script>";
+					 echo "<script>document.getElementById('".$id."').className = 'hide-row';</script>";
 					 $sql = "UPDATE book SET status = 'unavailable' WHERE bookID = $id";
 					 $stmt = $db->prepare($sql);
 					 $stmt->execute();
 					 // Force refresh of page
 					 // echo "<script type='text/javascript'>location.href = 'browse.php';</script>";
+
+
+					 //	theButton.on('click', function() {
+					 //	$('tr:nth-child(2)').toggleClass('active');
+					 //	});
+
 				 	};
 					// free results
 					$stmt->free_result();
@@ -128,6 +135,7 @@
 
 		<div class="push"></div>
 </div>
+
 
 <?php
   include 'include/footer.php'; ?>
