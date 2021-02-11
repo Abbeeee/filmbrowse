@@ -41,7 +41,7 @@
 
 				<tbody>
 				<?php
-					// Print boodID outside while loop, see below
+					// Set bookID variable to save it outside of while loop
 					$id = '';
 					// As long as $result contains any rows, display them
 					while ($row = $result->fetch_assoc()){
@@ -50,7 +50,7 @@
 						 echo "<td><div>".$row['name']."</div></td>";
 						 echo "<td class='button-cell'><div>";
 						 echo "<form method='POST'>";
-						 echo "<button id='".$row['bookID']."' class='update-btn' name='status' value='".$row['bookID']."'>Reserve</button></form>";
+						 echo "<button id='".$row['bookID']."' class='update-btn' type='submit' name='status' value='".$row['bookID']."'>Reserve</button></form>";
 						 echo "</div></td>";
 						 echo "</tr>";
 					};
@@ -58,19 +58,15 @@
 					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
 					if (isset($_POST['status'])){
 					 $id = $_POST['status'];
-					 // echo "<script type='text/javascript'>document.getElementById('".$id."').className = 'changed';</script>";
-					 echo "<script>document.getElementById('".$id."').className = 'hide-row';</script>";
+
+
+					 echo "<script type='text/javascript'>document.getElementById('".$id."').className = 'changed';</script>";
 					 $sql = "UPDATE book SET status = 'unavailable' WHERE bookID = $id";
 					 $stmt = $db->prepare($sql);
 					 $stmt->execute();
+
 					 // Force refresh of page
 					 // echo "<script type='text/javascript'>location.href = 'browse.php';</script>";
-
-
-					 //	theButton.on('click', function() {
-					 //	$('tr:nth-child(2)').toggleClass('active');
-					 //	});
-
 				 	};
 					// free results
 					$stmt->free_result();
@@ -92,7 +88,7 @@
 
 
 
-
+<!--
 		<div style ="border: dashed 5px linen; padding: 25px; margin: 100px 0;">
 			<h3 style="margin-bottom:10px; color: salmon;">TEMPORARY</h3>
 			<h1>Add books to database</h1>
@@ -106,26 +102,26 @@
 				<input type="submit" name="submit" value="Add to database">
 			</form>
 		</div>
-
+-->
 			<?php
-				$query = "SELECT * from book";
-				$stmt = $db->prepare($query);
-				$stmt->bind_result($bookID, $title, $ISBN, $pages, $edition, $year, $publisher, $status);
-				$stmt->execute();
-
-				echo '<table class="browse-table" style="margin:50px auto;">';
-				echo '<tr> <b> <th>BookID</th> <th>Title</th> <th>ISBN</th> <th>Pages</th> <th>Edition</th> <th>Year</th> <th>Publisher</th> <th>Status</th> </b> </tr>';
-				while ($stmt->fetch()) {
-					echo "<tr>";
-					echo "<td> $bookID </td> <td> $title </td><td> $ISBN </td><td> $pages </td><td> $edition </td><td> $year </td><td> $publisher </td><td> $status </td>";
-					echo "</tr>";
-				}
-				echo "</table>";
-
-				$stmt->close();
-				// close connection
-				$db->close();
-			?>
+//				$query = "SELECT * from book";
+//				$stmt = $db->prepare($query);
+//				$stmt->bind_result($bookID, $title, $ISBN, $pages, $edition, $year, $publisher, $status);
+//				$stmt->execute();
+//
+//				echo '<table class="browse-table" style="margin:50px auto;">';
+//				echo '<tr> <b> <th>BookID</th> <th>Title</th> <th>ISBN</th> <th>Pages</th> <th>Edition</th> <th>Year</th> <th>Publisher</th> <th>Status</th> </b> </tr>';
+//				while ($stmt->fetch()) {
+//					echo "<tr>";
+//					echo "<td> $bookID </td> <td> $title </td><td> $ISBN </td><td> $pages </td><td> $edition </td><td> $year </td><td> $publisher </td><td> $status </td>";
+//					echo "</tr>";
+//				}
+//				echo "</table>";
+//
+//				$stmt->close();
+//				// close connection
+//				$db->close();
+//			?>
 
 	</div>
 

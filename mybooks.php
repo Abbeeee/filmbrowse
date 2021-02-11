@@ -56,7 +56,7 @@
 						 echo "<td><div>".$row['name']."</div></td>";
 						 echo "<td class='button-cell'><div>";
 						 echo "<form method='POST'>";
-						 echo "<button class='update-btn' type='submit' name='status' value='".$row['bookID']."'>Return</button></form>";
+						 echo "<button id='".$row['bookID']."' class='update-btn' type='submit' name='status' value='".$row['bookID']."'>Return</button></form>";
 						 echo "</div></td>";
 						 echo "</tr>";
 					};
@@ -65,17 +65,12 @@
 					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
 					if (isset($_POST['status'])){
 					$id = $_POST['status'];
-					echo "<script>document.getElementById('".$id."').className = 'hide-row';</script>";
+					echo "<script>document.getElementById('".$id."').className = 'changed';</script>";
 					$stmt = $db->prepare("UPDATE book SET status = 'available' WHERE bookID = $id");
 					$stmt->execute();
 					// Force refresh of page
 					// echo "<script type='text/javascript'>location.href = 'mybooks.php';</script>";
 					};
-
-					echo "</table>";
-
-					// Print boodID outside while loop
-					// print_r($id);
 
 					// free results
 					$stmt->free_result();
@@ -86,6 +81,7 @@
 				?>
 
 			</tbody>
+		</table>
 		</div>
 
 	<div class="push"></div>
