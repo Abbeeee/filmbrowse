@@ -28,7 +28,7 @@ header {
   padding: 0 50px;
 	height: 80px;
   background-color: #3f5ea8;
-	position:sticky;
+	position: sticky;
 	top: 0;
 	z-index: 2;
 	filter: drop-shadow(0px 10px 0px #F5EFD8);
@@ -69,6 +69,10 @@ nav .not-active:hover {
 	background-clip: padding-box;
 	background-position: bottom;
 }
+.feather-user {
+	position: relative;
+	top: 5px;
+}
 #logo {
   float: left;
 	max-width: 300px;
@@ -90,10 +94,10 @@ footer {
   min-height: 100%;
   /* Equal to height of footer */
   /* But also accounting for potential margin-bottom of last child */
-  margin-bottom: -59px;
+  margin-bottom: -64px;
 }
 .push {
-  height: 59px;
+  height: 64px;
 }
 
 
@@ -215,7 +219,7 @@ main h1 {
 	justify-content: space-between;
 	padding: 5px 0;
 }
- input[type=text], textarea {
+ input[type=text], input[type=password], textarea {
 	width: 100%;
 	height: 50px;
 	border: none;
@@ -223,12 +227,12 @@ main h1 {
 	padding: 0 0 0 15px;
 	box-sizing: border-box;
 }
-input[type=text]:focus, input[type=text]:hover, textarea:focus, textarea:hover {
+input[type=text]:focus, input[type=text]:hover, input[type=password]:focus, input[type=password]:hover, textarea:focus, textarea:hover {
 	outline: none;
 	border-bottom: 5px solid #3f5ea8;
 	transition: all 0.2s;
 }
-#browse-form input[type=submit], .contact-form input[type=submit] {
+#browse-form input[type=submit], .contact-form input[type=submit], .login-form input[type=submit] {
 	padding: 10px 20px;
 	border: none;
 	background-color: #FFD228;
@@ -239,7 +243,7 @@ input[type=text]:focus, input[type=text]:hover, textarea:focus, textarea:hover {
   background-position: top;
   transition: all .2s ease-out;
 }
-#browse-form input[type=submit]:hover, .contact-form input[type=submit]:hover {
+#browse-form input[type=submit]:hover, .contact-form input[type=submit]:hover, .login-form input[type=submit]:hover {
 	color: white;
 	background-position: bottom;
 }
@@ -270,15 +274,19 @@ input[type=text]:focus, input[type=text]:hover, textarea:focus, textarea:hover {
 }
 @keyframes test {
 	0% {
-		background-color: lightgreen;
 		transform: scale(1.0);
-	}
-	50% {
+		opacity: 1;
 		background-color: lightgreen;
-		transform: scale(1.1);
+	}
+	25% {
+		transform: scale(1.0);
+		opacity: 1;
+		background-color: lightgreen;
 	}
 	100% {
-		transform: scale(0);
+		transform: scale(1.2);
+		opacity: 0;
+		background-color: lightgreen;
 	}
 }
 
@@ -390,7 +398,6 @@ tbody tr.hide-row td div {
 	max-width: 960px;
 	padding: 50px 0 50px 0;
 	margin: auto;
-	position: relative;
 }
 .contact-box {
 	width: 100%;
@@ -424,10 +431,147 @@ textarea {
 	width: 33%;
 	height: 50px;
 	margin-top: 10px;
+	font-weight: bold;
 }
 .person-smiling {
 	max-width: 400px;
 	position: absolute;
 	right: -30px;
 	bottom: -28px;
+}
+
+/*========================================
+	GALLERY
+==========================================*/
+.gallery-container {
+	max-width: 960px;
+	padding: 50px 0 50px 0;
+	margin: auto;
+}
+.gallery-box {
+	max-width: 100%;
+	background-color: #F5EFD8;
+	filter: drop-shadow(10px 10px 0px #FFD228);
+	padding: 25px 25px 25px 25px;
+}
+.gallery-box h1 {
+	font-family: termina, sans-serif;
+	color: #EA4F3F;
+}
+.gallery-item-container {
+	display: flex;
+	flex-wrap: wrap;
+
+}
+.gallery-item {
+	width: 25%;
+	height: 150px;
+	margin: 30px 35px;
+	object-fit: cover;
+	filter: drop-shadow(5px 5px 0px #3f5ea8);
+	transition: filter .2s ease-out;
+}
+.gallery-item:hover {
+	filter: drop-shadow(8px 8px 0px #3f5ea8);
+	transition: filter .2s ease-out;
+}
+
+/*========================================
+	LOGIN
+==========================================*/
+.login-container, .admin-container {
+	max-width: 960px;
+	padding: 50px 0 50px 0;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.login-box {
+	background-color: #F5EFD8;
+	filter: drop-shadow(10px 10px 0px #FFD228);
+	padding: 25px;
+}
+.login-box h1, .admin-box h1 {
+	font-family: termina, sans-serif;
+	color: #EA4F3F;
+}
+.login-form {
+	padding-top: 25px;
+}
+.login-form label {
+	font-weight: bold;
+}
+.login-form input[type=text], .login-form input[type=password] {
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+.login-form button, .admin-box input[type=submit] {
+	padding: 20px 10px;
+	border: none;
+	background-color: #FFD228;
+	cursor: pointer;
+	outline: none;
+	background: linear-gradient(to top, #3f5ea8 50%, #FFD228 50%);
+  background-size: 100% 200%;
+  background-position: top;
+  transition: all .2s ease-out;
+	width: 33%;
+	margin-top: 10px;
+	font-weight: bold;
+}
+.login-form button:hover, .admin-box button:hover, .admin-box input[type=submit]:hover {
+	color: white;
+	background-position: bottom;
+}
+.error {
+	background: #f2DEDE;
+	color: #EA4F3F;
+	padding: 10px 10px 20px 10px;
+	margin-bottom: 15px;
+}
+.feather-alert-circle {
+	position: relative;
+	top: 6px;
+	margin-right: 10px;
+}
+.admin-box {
+	background-color: #F5EFD8;
+	filter: drop-shadow(10px 10px 0px #FFD228);
+	padding: 25px;
+}
+.admin-box p {
+	margin-top: 10px;
+}
+.admin-box button {
+		padding: 10px 20px;
+		border: none;
+		background-color: #FFD228;
+		cursor: pointer;
+		outline: none;
+		background: linear-gradient(to top, #3f5ea8 50%, #FFD228 50%);
+	  background-size: 100% 200%;
+	  background-position: top;
+	  transition: all .2s ease-out;
+		margin-top: 25px;
+		font-weight: bold;
+		float: right;
+}
+.admin-box input[type=submit] {
+	margin: 20px 10px 0 0;
+}
+.admin-box input::-webkit-file-upload-button {
+	width: 10%;
+	visibility: hidden;
+	padding: 20px 10px;
+	display: inline;
+}
+.admin-box input::before {
+	content: 'Select file';
+	padding: 20px 10px;
+	border: none;
+	background-color: #FFD228;
+	cursor: pointer;
+	outline: none;
+	font-weight: bold;
 }

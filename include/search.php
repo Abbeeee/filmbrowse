@@ -7,10 +7,8 @@
 // Display all books with matching authors on arrive on page
 $query1 = "SELECT book.*, author.*
           FROM book
-          JOIN bookAuthor
-          ON book.bookID = bookAuthor.bookID
-          JOIN author
-          ON author.authorID = bookAuthor.authorID
+          JOIN bookAuthor ON book.bookID = bookAuthor.bookID
+          JOIN author ON author.authorID = bookAuthor.authorID
           WHERE status = 'available'";
 
 
@@ -20,10 +18,8 @@ $query1 = "SELECT book.*, author.*
         $name = $_GET['name'];
         $query1 = "SELECT book.*, author.*
                   FROM book
-                  JOIN bookAuthor
-                  ON book.bookID = bookAuthor.bookID
-                  JOIN author
-                  ON author.authorID = bookAuthor.authorID
+                  JOIN bookAuthor ON book.bookID = bookAuthor.bookID
+                  JOIN author ON author.authorID = bookAuthor.authorID
                   WHERE title LIKE '%$title%' && name LIKE '%$name%' && status = 'available'";
   }
 

@@ -5,6 +5,13 @@
 	<title>Le Bookstore</title>
 	<link rel="stylesheet" href="https://use.typekit.net/dix1wpk.css">
 	<link href="style.css" rel="stylesheet" type="text/css">
+	<script>
+
+		function timeFunction() {
+			setTimeout(function(){ location.reload(); }, 800);
+		}
+
+	</script>
 </head>
 
 <body>
@@ -65,7 +72,10 @@
 					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
 					if (isset($_POST['status'])){
 					$id = $_POST['status'];
-					echo "<script>document.getElementById('".$id."').className = 'changed';</script>";
+					echo "<script>
+									document.getElementById('".$id."').className = 'changed';
+									timeFunction();
+								</script>";
 					$stmt = $db->prepare("UPDATE book SET status = 'available' WHERE bookID = $id");
 					$stmt->execute();
 					// Force refresh of page

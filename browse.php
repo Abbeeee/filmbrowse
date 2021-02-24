@@ -5,7 +5,13 @@
 	<title>Le Bookstore</title>
 	<link rel="stylesheet" href="https://use.typekit.net/dix1wpk.css">
 	<link href="style.css" rel="stylesheet" type="text/css">
+	<script>
 
+		function timeFunction() {
+			setTimeout(function(){ location.reload(); }, 800);
+		}
+
+	</script>
 </head>
 
 <body>
@@ -58,16 +64,18 @@
 					// the row that has been pressed. Get this value from hidden input that recieves the bookID as value
 					if (isset($_POST['status'])){
 					 $id = $_POST['status'];
-
-
-					 echo "<script type='text/javascript'>document.getElementById('".$id."').className = 'changed';</script>";
+					 // Run css animation
+					 echo "<script>
+					 				document.getElementById('".$id."').className = 'changed';
+									timeFunction();
+					 			</script>";
 					 $sql = "UPDATE book SET status = 'unavailable' WHERE bookID = $id";
 					 $stmt = $db->prepare($sql);
 					 $stmt->execute();
-
 					 // Force refresh of page
-					 // echo "<script type='text/javascript'>location.href = 'browse.php';</script>";
+					 // echo "<script>location.href = 'browse.php';</script>";
 				 	};
+					// echo "<script> </script>";
 					// free results
 					$stmt->free_result();
    				// close statement
@@ -79,49 +87,6 @@
 			</table>
 		</div>
 
-
-
-
-
-
-
-
-
-
-<!--
-		<div style ="border: dashed 5px linen; padding: 25px; margin: 100px 0;">
-			<h3 style="margin-bottom:10px; color: salmon;">TEMPORARY</h3>
-			<h1>Add books to database</h1>
-			<form action="include/add_book.php" method="POST">
-					<input type="text" name="title" placeholder="Title">
-					<input type="text" name="ISBN" placeholder="ISBN">
-					<input type="text" name="pages" placeholder="Pages">
-					<input type="text" name="edition" placeholder="Edition">
-					<input type="text" name="year" placeholder="Year">
-					<input type="text" name="publisher" placeholder="Publisher">
-				<input type="submit" name="submit" value="Add to database">
-			</form>
-		</div>
--->
-			<?php
-//				$query = "SELECT * from book";
-//				$stmt = $db->prepare($query);
-//				$stmt->bind_result($bookID, $title, $ISBN, $pages, $edition, $year, $publisher, $status);
-//				$stmt->execute();
-//
-//				echo '<table class="browse-table" style="margin:50px auto;">';
-//				echo '<tr> <b> <th>BookID</th> <th>Title</th> <th>ISBN</th> <th>Pages</th> <th>Edition</th> <th>Year</th> <th>Publisher</th> <th>Status</th> </b> </tr>';
-//				while ($stmt->fetch()) {
-//					echo "<tr>";
-//					echo "<td> $bookID </td> <td> $title </td><td> $ISBN </td><td> $pages </td><td> $edition </td><td> $year </td><td> $publisher </td><td> $status </td>";
-//					echo "</tr>";
-//				}
-//				echo "</table>";
-//
-//				$stmt->close();
-//				// close connection
-//				$db->close();
-//			?>
 
 	</div>
 
@@ -135,6 +100,7 @@
 
 <?php
   include 'include/footer.php'; ?>
+
 </body>
 
 </html>
