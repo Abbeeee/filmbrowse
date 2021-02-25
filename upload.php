@@ -1,11 +1,13 @@
 <?php
+
+// Set variables
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["filename"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
 
-// Check if image file is a actual image or fake image
+// Check if image file is a actual image
 if(isset($_POST["submit"])) {
   $check = getimagesize($_FILES["filename"]["tmp_name"]);
   if($check !== false) {

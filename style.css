@@ -128,10 +128,18 @@ main h1 {
 	flex-wrap: wrap;
 	justify-content: space-around;
 }
+.info-container a {
+	text-decoration: none;
+}
 .info-box {
 	max-width: 400px;
 	background-color: #F5EFD8;
 	filter: drop-shadow(10px 10px 0px #FFD228);
+	transition: all .5s ease-out;
+}
+.info-box:hover {
+	filter: drop-shadow(12px 12px 0px #3f5ea8);
+	transition: all .5s ease-out;
 }
 .info-img {
 	width: 100%;
@@ -146,6 +154,7 @@ main h1 {
 }
 .info-box p {
 	margin: 0px 30px 30px 30px;
+	color: black;
 }
 
 

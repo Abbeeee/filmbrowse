@@ -3,8 +3,10 @@ session_start();
 include "include/config.php";
 include "include/connect.php";
 
-if (isset($_POST['uname']) && isset($_POST['password'])) {
+// If something is posted through login form
+if (isset($_POST['username']) && isset($_POST['password'])) {
 
+  // Make sure input can't contain harmful code
   function validate($data){
     $data = trim($data);
     $data = stripslashes($data);
@@ -12,25 +14,27 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     return $data;
   }
 
-  $uname = validate($_POST['uname']);
-  $pass = validate($_POST['password']);
+  // Run the function to disarm any potential harmful code
+  $username = validate($_POST['username']);
+  $password = validate($_POST['password']);
 
 
-  if (empty($uname)) {
+  if (empty($username)) {
       header("Location: login-page.php?error=Username is required");
       exit();
-  } else if (empty($pass)) {
+  } else if (empty($password)) {
       header("Location: login-page.php?error=Password is required");
       exit();
   } else {
 
-    $sql = "SELECT * FROM user WHERE userName='$uname' AND password='$pass'";
+    // Query to retrieve row from database where it matches the users imput
+    $sql = "SELECT * FROM user WHERE userName='$username' AND password='$password'";
 
     $result = mysqli_query($db, $sql);
 
     if (mysqli_num_rows($result) === 1) {
       $row = mysqli_fetch_assoc($result);
-      if ($row['userName'] === $uname && $row['password'] === $pass) {
+      if ($row['userName'] === $username && $row['password'] === $password) {
           $_SESSION['userName'] = $row['userName'];
           $_SESSION['type'] = $row['type'];
           $_SESSION['userID'] = $row['userID'];

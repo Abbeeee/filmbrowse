@@ -21,6 +21,7 @@
 				<h1>Gallery</h1>
         <div class="gallery-item-container">
 					<?php
+						// return an array of filenames
 						$images = glob("uploads/*.*");
 						foreach($images as $image) {
 							echo '<img class="gallery-item" src="'.$image.'" />';

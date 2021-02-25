@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// Allow access if the session userID & userName has been succesfully set, and type is user. Else...
 if (isset($_SESSION['userID']) && isset($_SESSION['userName']) && $_SESSION['type'] === 'user') {
 
 ?>
@@ -21,7 +21,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['userName']) && $_SESSION['typ
 <?php
 	 include 'include/header.php'; ?>
 
-
+	 <!-- using same classes from admin page since looks are the same -->
 	 <div class="admin-container">
 
 		 <div class="admin-box">
@@ -48,6 +48,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['userName']) && $_SESSION['typ
 </html>
 
 <?php
+// Else if userID and userName has not been set -> redirect to login page.
 } else {
   header("Location: login.php");
   exit();
