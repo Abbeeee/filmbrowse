@@ -464,10 +464,27 @@ textarea {
 	font-family: termina, sans-serif;
 	color: #EA4F3F;
 }
+.gallery-box button, .cat-box button {
+	padding: 10px 20px;
+	margin: 5px auto;
+	border: none;
+	background-color: #FFD228;
+	cursor: pointer;
+	outline: none;
+	background: linear-gradient(to top, #3f5ea8 50%, #FFD228 50%);
+  	background-size: 100% 200%;
+  	background-position: top;
+  	transition: background .2s ease-out;
+}
+.gallery-box button:hover, .cat-box button:hover {
+	color: white;
+	background-position: bottom;
+}
 .gallery-item-container {
-	display: flex;
-	flex-wrap: wrap;
-
+	text-align: center;
+}	
+.gallery-item-container h3 {
+	margin: 25px 0 50px 0;
 }
 .gallery-item {
 	width: 25%;
@@ -478,9 +495,19 @@ textarea {
 	transition: filter .2s ease-out;
 	border: 1px #3f5ea8 solid;
 }
-.gallery-item:hover {
+.gallery-item:hover, .gallery-item-new:hover {
 	filter: drop-shadow(5px 5px 0px #3f5ea8);
 	transition: filter .2s ease-out;
+}
+.gallery-item-new {
+	width: 75%;
+	height: 350px;
+	object-fit: cover;
+	filter: drop-shadow(0px 0px 0px #3f5ea8);
+	transition: filter .2s ease-out;
+	border: 2px #3f5ea8 solid;
+	border-radius: 2px;
+	margin-top: 50px;
 }
 
 /*========================================
@@ -581,4 +608,38 @@ textarea {
 	cursor: pointer;
 	outline: none;
 	font-weight: bold;
+}
+
+
+/*========================================
+	CATS
+==========================================*/
+#cat-container {
+	max-width: 960px;
+	padding: 50px 0 50px 0;
+	margin: auto;
+}
+.cat-box {
+	width: 75%;
+	background-color: #F5EFD8;
+	filter: drop-shadow(10px 10px 0px #FFD228);
+	margin: auto;
+}
+.cat-box h1 {
+	font-family: termina, sans-serif;
+	color: #EA4F3F;
+	padding: 25px 25px 0 25px;
+}
+.cat-box h3 {
+	margin: 50px 0;
+}
+.cat-form {
+	padding: 20px 25px 25px 25px;
+}
+.cat-form ul {
+	list-style: none;
+	margin-top: 100px;
+}
+.cat-form li {
+	margin-bottom: 10px;
 }

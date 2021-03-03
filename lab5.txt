@@ -1,0 +1,20 @@
+They are used to make it easier for various systems to communicate and send data to 
+each other in ways that is understandable for them. It also makes it so that a user 
+can access parts easier through the interface. An real life scenario is where you can 
+use the google maps api to retrieve exact coordinates for cities. 
+
+initate the curl
+    curl_init();
+
+specify what website/api you want to connect to
+    $url = "https://catfact.ninja/fact?max_length=50";
+
+set various options that is used when initating the call            
+    curl_setopt($curlconn, CURLOPT_URL, $url);
+    curl_setopt($curlconn, CURLOPT_RETURNTRANSFER, true);
+
+excecute the curl call/connection
+    curl_exec($curl_connection);
+
+Since most api's return json files you may have to decode it to the language you are using
+    json_decode($curl_excecuted);

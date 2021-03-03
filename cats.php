@@ -16,36 +16,59 @@
 
 
 
-	 <div id="contact-container">
+	 <div id="cat-container">
 
-		 <div class="contact-box">
+		 <div class="cat-box">
 			 <h1>Cat facts bitch</h1>
-			 <form class="contact-form" method="post">
+			 <form class="cat-form" method="post">
 			 		<button type="submit" name="fact">Get fact</button>
-          <br><br>
-
+          <button type="submit" name="breed">Get breed</button>
+    
           <?php
-          $curlconn = curl_init();
+          
+            if (isset($_POST['fact'])) {
+              
+              $curlconn = curl_init();
+              $url = "https://catfact.ninja/fact?max_length=50";
+            
+              curl_setopt($curlconn, CURLOPT_URL, $url);
+              curl_setopt($curlconn, CURLOPT_RETURNTRANSFER, true);
+    
+              $response = curl_exec($curlconn);
+    
+              $jsonResponse = json_decode($response, true);
 
-          curl_setopt($curlconn, CURLOPT_URL, 'https://catfact.ninja/fact?max_length=50');
-          curl_setopt($curlconn, CURLOPT_RETURNTRANSFER, true);
-          curl_setopt($curlconn, CURLOPT_HTTPHEADER, array(
-            'fact:', 'string',
-            'lenght:', '50'
-          ));
+              echo "<h3>".$jsonResponse['fact']."</h3>";
 
-          $catfact = curl_exec($curlconn);
-          curl_close($curlconn);
+              curl_close($curlconn);
+            }
 
-          $jsonArrayResponse = json_decode($catfact);
+            if (isset($_POST['breed'])) {
+              
+              $curlconn = curl_init();
+              $url = "https://catfact.ninja/breeds?limit=98";
+            
+              curl_setopt($curlconn, CURLOPT_URL, $url);
+              curl_setopt($curlconn, CURLOPT_RETURNTRANSFER, true);
+    
+              $response = curl_exec($curlconn);
+              $jsonResponse = json_decode($response, true);
+              $randomBreed = rand(1, 98);
+             
+              echo "<h3>".$jsonResponse['data'][$randomBreed]['breed']."</h3>";
 
-          if (isset($_POST['fact'])) {
-            echo $jsonArrayResponse;
-          }
-
+              curl_close($curlconn);
+        
+            //  $output = "<ul>";
+            //  foreach($jsonResponse['data'] as $each) {
+            //    $output .= "<li>".$each['breed']."</li>";
+            //  }
+            //  $output .= "</ul>";
+            //  echo $output;
+            }
 
           ?>
-
+          </ul>
 			 </form>
 		 </div>
 
