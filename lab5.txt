@@ -1,20 +1,38 @@
-They are used to make it easier for various systems to communicate and send data to 
-each other in ways that is understandable for them. It also makes it so that a user 
-can access parts easier through the interface. An real life scenario is where you can 
-use the google maps api to retrieve exact coordinates for cities. 
 
-initate the curl
-    curl_init();
+===============================
+  REST API's
+===============================
 
-specify what website/api you want to connect to
-    $url = "https://catfact.ninja/fact?max_length=50";
+API's are used to make it easier for various systems to communicate and send data to
+each other in ways that is understandable for them. It also makes it so that a user
+can access parts easier through the interface. REST in turn specifies how and what rules an API has.
+Such rules could be what types of data users are able to get from the API and/or if they are allowed
+to update/delete data. It could also define if you need to authenticate to access data. A REST API
+normally comes with some kind of documentation to let the user know how to interact with it.
 
-set various options that is used when initating the call            
-    curl_setopt($curlconn, CURLOPT_URL, $url);
-    curl_setopt($curlconn, CURLOPT_RETURNTRANSFER, true);
+An real life scenario is where you can use the google maps API to retrieve exact coordinates for cities.
+These also requires an authentication to be able to retrieve data. Another is where you can use Githubs API
+to retrieve information about users, like accessing data about their repositories. Here it can also be used
+to create new repositories, this, however, requires an authentication.
 
-excecute the curl call/connection
-    curl_exec($curl_connection);
 
-Since most api's return json files you may have to decode it to the language you are using
-    json_decode($curl_excecuted);
+
+===============================
+  PSUEDO CODE
+===============================
+
+initate curl_init() and save as $curl_connection
+
+set $url = https://catfact.ninja/fact?max_length=50
+
+set option for ($curl_connection, CURLOPT_URL, $url) specifies the url
+set option for ($curl_connection, CURLOPT_RETU+4RNTRANSFER, true) makes it return a string instead of output directly
+
+excecute/run the ($curl_connection) save as $response
+
+$response return json file (most api's do)
+json_decode($response, true) returns array and save it as $jsonResponse
+
+display $jsonResponse on webpage
+
+curl_close($curl_connection) when done with the curl
