@@ -3,17 +3,19 @@
   REST API's
 ===============================
 
-API's are used to make it easier for various systems to communicate and send data to
-each other in ways that is understandable for them. It also makes it so that a user
-can access parts easier through the interface. REST in turn specifies how and what rules an API has.
-Such rules could be what types of data users are able to get from the API and/or if they are allowed
-to update/delete data. It could also define if you need to authenticate to access data. A REST API
-normally comes with some kind of documentation to let the user know how to interact with it.
+API's are used to make it easier for various systems to communicate and send data to each
+other in ways that is understandable for them. It also makes it so that a user can access
+parts easier through the interface. REST in turn specifies how and what rules an API has.
+Such rules could be what types of data users are able to get from the API and/or if they
+are allowed to update/delete data. It could also define if you need to authenticate to
+access data. A REST API normally also comes with some kind of documentation to let the 
+user know how to interact with it.
 
-An real life scenario is where you can use the google maps API to retrieve exact coordinates for cities.
-These also requires an authentication to be able to retrieve data. Another is where you can use Githubs API
-to retrieve information about users, like accessing data about their repositories. Here it can also be used
-to create new repositories, this, however, requires an authentication.
+An real life scenario is where you can use the google maps API to retrieve exact coordinates 
+for cities. These also requires an authentication to be able to retrieve data. Another is 
+where you can use Githubs API to retrieve information about users, like accessing data 
+about their repositories. Here it can also be used to create new repositories, 
+this, however, requires an authentication.
 
 
 
