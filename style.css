@@ -13,7 +13,7 @@ main {
 	margin: auto;
 	display: flex;
 	flex-wrap: wrap;
-  align-items: center;
+  	align-items: center;
 	justify-content: space-between;
 	padding: 75px 0 50px 0;
 }
@@ -87,7 +87,7 @@ footer {
 	background-color: #f5efd8;
 	text-align: center;
 	padding: 20px 50px;
-  font-size: 12px;
+  	font-size: 12px;
 	border-bottom: solid 10px #3f5ea8;
 }
 .wrapper {
